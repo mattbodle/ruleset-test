@@ -1,0 +1,16 @@
+{
+  "gateCheckName": "Ruleset Test Safe PR Gate",
+  "maxChangedLines": 100,
+  "maxFiles": 1,
+  "requiredCommitStatuses": [
+    {
+      "context": "ruleset-test/bot-check"
+    }
+  ],
+  "safePaths": [
+    "README.md"
+  ],
+  "trustedAuthorLogins": [
+    "mattbodle"
+  ]
+}
