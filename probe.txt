@@ -1,0 +1,1 @@
+Unsafe-path fixture for the ruleset Safe PR Gate proof.
