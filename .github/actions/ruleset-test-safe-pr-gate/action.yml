@@ -1,0 +1,18 @@
+name: Ruleset Test Safe PR Gate
+description: Evaluates the trusted test author, safe paths, and bot status for the ruleset proof.
+inputs:
+  api-url:
+    required: true
+  event-path:
+    required: true
+  github-token:
+    required: true
+  mode:
+    required: true
+  policy-path:
+    required: true
+  pr-number:
+    required: false
+runs:
+  using: node20
+  main: index.js
