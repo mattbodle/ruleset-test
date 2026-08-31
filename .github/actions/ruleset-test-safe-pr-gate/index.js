@@ -7,7 +7,12 @@ const {
 } = require("./lib/gate");
 
 function getInput(name) {
-  return process.env[`INPUT_${name.replace(/-/g, "_").toUpperCase()}`]?.trim() || "";
+  const normalizedName = name.toUpperCase();
+  return (
+    process.env[`INPUT_${normalizedName}`]?.trim() ||
+    process.env[`INPUT_${normalizedName.replace(/-/g, "_")}`]?.trim() ||
+    ""
+  );
 }
 
 function requiredInput(name) {
@@ -277,4 +282,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { resolvePullRequestNumbers };
+module.exports = { getInput, resolvePullRequestNumbers };
