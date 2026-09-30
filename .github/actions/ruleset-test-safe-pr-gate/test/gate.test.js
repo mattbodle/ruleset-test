@@ -7,6 +7,7 @@ const {
   getStatusSha,
   validatePolicy,
 } = require("../lib/gate");
+const { getInput } = require("../index");
 
 const policy = validatePolicy({
   gateCheckName: "Ruleset Test Safe PR Gate",
@@ -89,4 +90,13 @@ test("rejects unsafe policy and maps a status event to its SHA", () => {
   assert.throws(() => validatePolicy({ ...policy, trustedAuthorLogins: [] }));
   const sha = "a".repeat(40);
   assert.equal(getStatusSha({ commit: { sha } }), sha);
+});
+
+test("reads hyphenated composite-action input names", () => {
+  const inputName = "INPUT_EVENT-PATH";
+  const previousValue = process.env[inputName];
+  process.env[inputName] = "/tmp/event.json";
+  assert.equal(getInput("event-path"), "/tmp/event.json");
+  if (previousValue === undefined) delete process.env[inputName];
+  else process.env[inputName] = previousValue;
 });
